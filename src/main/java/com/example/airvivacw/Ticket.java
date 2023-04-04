@@ -1,6 +1,6 @@
 package com.example.airvivacw;
 
-public class Ticket {
+public class Ticket implements I_Ticket {
     private int customerID;
     private String flightDate;
     private String flightTime;
