@@ -9,14 +9,14 @@ public class Blank {
     public Blank(String blankType, String expirationDate, String itinerary, int ID, String status) {
         this.blankType = blankType;
         this.expirationDate = expirationDate;
-        this.itinerary = itinerary;
+        //this.itinerary = itinerary;
         this.ID = ID;
         this.status = status;
     }
 
-    public boolean checkExpiration() {
-        ;
-    }
+    //public boolean checkExpiration() {
+    //    ;
+    //}
 
     public String getBlankType() {
         return blankType;
@@ -34,13 +34,13 @@ public class Blank {
         this.expirationDate = expirationDate;
     }
 
-    public String getItinerary() {
-        ;
-    }
+    //public String getItinerary() {
+    //    ;
+    //}
 
-    public void setItinerary(String itinerary) {
-        ;
-    }
+    //public void setItinerary(String itinerary) {
+    //    ;
+    //}
 
     public int getID() {
         return ID;
