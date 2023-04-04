@@ -1,4 +1,4 @@
-package com.example.airvivacw;
+package com.example.airvivacw.ticket;
 
 public class Ticket implements I_Ticket {
     private int customerID;

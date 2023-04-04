@@ -1,4 +1,4 @@
-package com.example.airvivacw;
+package com.example.airvivacw.ticket;
 
 public interface I_Ticket {
     Blank addBlank(String blankType, String ID, String expirationData);
