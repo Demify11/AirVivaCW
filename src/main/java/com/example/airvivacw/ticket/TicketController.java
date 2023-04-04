@@ -9,7 +9,7 @@ public class TicketController implements I_Ticket {
         ;
     }
 
-    public boolean checkAvailability {
+    public boolean checkAvailability() {
         ;
     }
 
