@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="635.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.airvivacw.SceneController">
+<AnchorPane prefHeight="635.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.airvivacw.ManagerController">
     <children>
-        <Button layoutX="30.0" layoutY="596.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="68.0" text="Log Out" />
+        <Button layoutX="30.0" layoutY="596.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="28.0" prefWidth="68.0" text="Log Out" />
         <TabPane layoutX="132.0" prefHeight="638.0" prefWidth="721.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                 <Tab text="Report" />
@@ -23,7 +20,7 @@
         </TabPane>
         <ImageView fitHeight="164.0" fitWidth="123.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../java/com/example/airvivacw/img/air_via_logo.png" />
+                <Image url="@air_via_logo.png" />
             </image>
         </ImageView>
     </children>
