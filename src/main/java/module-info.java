@@ -10,4 +10,5 @@ module com.example.airvivacw {
 
     opens com.example.airvivacw to javafx.fxml;
     exports com.example.airvivacw;
+
 }

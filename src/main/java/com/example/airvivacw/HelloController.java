@@ -20,7 +20,7 @@ public class HelloController {
 
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getConnection();
-
+    
     private SceneController sceneController = new SceneController();
 
     public void loginButtonOnAction(ActionEvent e) throws SQLException, IOException {
@@ -63,6 +63,3 @@ public class HelloController {
         }
     }
 }
-
-
-
