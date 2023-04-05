@@ -8,9 +8,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
+    public static int user;
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login1.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 520, 400);
         stage.setTitle("AirVia Login");
         stage.setScene(scene);
