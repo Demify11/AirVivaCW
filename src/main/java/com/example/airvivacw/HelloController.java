@@ -23,7 +23,7 @@ public class HelloController {
             loginMessageLabel.setText("login attempted");
             validateLogin();
         }else {
-            loginMessageLabel.setText("please enter user id and password.");
+            loginMessageLabel.setText("please enter username and password.");
         }
     }
 
@@ -31,7 +31,7 @@ public class HelloController {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String verifyLogin = "SELECT COUNT(1) FROM AVuser WHERE user_id ='"+usernameTextField.getText()+"' AND password ='" + passwordTextField.getText() +"'";
+        String verifyLogin = "SELECT COUNT(1) FROM Staff WHERE FirstName ='"+usernameTextField.getText()+"' AND Password ='" + passwordTextField.getText() +"'";
 
         try{
             Statement statement = connectDB.createStatement();
