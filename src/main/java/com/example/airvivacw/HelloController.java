@@ -26,13 +26,6 @@ public class HelloController {
     public void loginButtonOnAction(ActionEvent e) throws SQLException, IOException {
 
         if (usernameTextField.getText().isBlank() == false && passwordTextField.getText().isBlank() == false) {
-            //loginMessageLabel.setText("login attempted");
-
-            //String verifyLogin = "SELECT COUNT(1) FROM AVuser WHERE user_id ='"+usernameTextField.getText()+"' AND password ='" + passwordTextField.getText() +"'";
-            //String verifyManagerId = "SELECT COUNT(1) FROM AVuser WHERE user_id ='"+usernameTextField.getText()+"'";
-            //String verifyAdvisorId = "SELECT COUNT(*) FROM AVuser WHERE Job_Type = 'Travel Advisor' AND user_id ='"+usernameTextField.getText()+"'";
-            //String verifyAdminId = "SELECT COUNT(1) FROM AVuser WHERE job_type = 'Administrator' AND user_id ='"+usernameTextField.getText()+"'";
-            //String verifyId = "Select user_id, job_type from AVuser where user_id = ? and username = ?"
 
             Statement statement = connectDB.createStatement();
             String verifyManagerId = "SELECT * FROM AVuser WHERE job_type = 'Manager' AND user_id ='" + usernameTextField.getText() + "'";
