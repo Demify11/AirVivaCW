@@ -1,6 +1,5 @@
 package com.example.airvivacw;
 
-import com.example.airvivacw.database.DatabaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

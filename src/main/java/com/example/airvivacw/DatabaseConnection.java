@@ -1,4 +1,4 @@
-package com.example.airvivacw.database;
+package com.example.airvivacw;
 import java.sql.*;
 public class DatabaseConnection {
     public Connection databaseLink;
