@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import java.io.IOException;
 import java.sql.*;
 
-public class HelloController {
+public class LoginController {
 
     @FXML
     private Label loginMessageLabel;
