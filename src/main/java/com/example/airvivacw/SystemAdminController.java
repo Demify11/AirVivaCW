@@ -2,43 +2,52 @@ package com.example.airvivacw;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
-
 import java.io.IOException;
+import java.awt.Desktop;
+import java.net.URI;
 import java.sql.*;
 
 public class SystemAdminController {
 
     private SceneController sceneController = new SceneController();
 
-    @FXML
-    private TextField createUserText;
-    @FXML
-    private TextField addFirstNameText;
-    @FXML
-    private TextField addSurnameText;
-    @FXML
-    private TextField addEmailText;
-    @FXML
-    private Label firstNameLabel;
-    @FXML
-    private Label surnameLabel;
-    @FXML
-    private Label emailLabel;
 
-    public void createAccountAction(ActionEvent e) {
+    @FXML
+    private TextField userPass;
+    @FXML
+    private TextField fullNameText;
+    @FXML
+    private TextField userIDText;
+    @FXML
+    private TextField jobType;
 
-        //create account for someone with specified textfields
+
+    DatabaseConnection currentDB = new DatabaseConnection();
+    Connection connectDB = currentDB.getConnection();
+
+
+    public void createAccountAction(ActionEvent e) throws SQLException, IOException{
+
+        if(fullNameText.getText().isBlank() == false && userIDText.getText().isBlank() == false
+                && jobType.getText().isBlank() == false && userPass.getText().isBlank() == false)
+        {
+           // Statement statement = connectDB.createStatement();
+           // String addUserDB = "";
+            //adds all new users info to DB
+            //ResultSet queryResult = statement.executeQuery(addUserDB);
+        }
         //database connection
         //SQL statement to add to database
     }
 
     public void launchPHP(ActionEvent e){
-        //opens the database
-        //brings them to page for them to login
+        try{
+            Desktop.getDesktop().browse(new URI("https://smcse.city.ac.uk/phpmyadmin/"));
+        } catch(Exception c){
+            c.printStackTrace();
+        }
+
     }
 
     public void getUserDetails(ActionEvent e){
