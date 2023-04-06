@@ -5,9 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 
+import java.io.IOException;
 import java.sql.*;
 
 public class SystemAdminController {
+
+    private SceneController sceneController = new SceneController();
 
     @FXML
     private TextField createUserText;
@@ -40,6 +43,10 @@ public class SystemAdminController {
         //SQL statement that loads users details based on selected userID
         //surnameLabel.setText()
 
+    }
+
+    public void logoutButtonOnAction(ActionEvent e) throws IOException {
+        sceneController.switchToLoginPage(e);
     }
 
 
