@@ -1,7 +1,6 @@
-package com.example.airvivacw.database;
+package com.example.airvivacw;
 import java.sql.*;
 public class DatabaseConnection {
-    // to be changed to interface
     public Connection databaseLink;
 
     public Connection getConnection() {
