@@ -38,6 +38,31 @@ public class SceneController {
         stage.show();
     }
 
+    public void switchToAdvisorStockPage(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("AdvisorStockPage.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void switchToAdvisorSalesPage(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("AdvisorSalesPage.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void switchToAdvisorSalesPage1(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("AdvisorSalesPage1.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
     public void switchToLoginPage(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("login1.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -45,5 +70,4 @@ public class SceneController {
         stage.setScene(scene);
         stage.show();
     }
-
 }
