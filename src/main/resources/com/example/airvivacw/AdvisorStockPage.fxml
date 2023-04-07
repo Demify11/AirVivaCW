@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.airvivacw.SceneController"
-            prefHeight="635.0" prefWidth="849.0">
 
+<AnchorPane prefHeight="635.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.airvivacw.SceneController">
+   <children>
+      <Label layoutX="79.0" layoutY="36.0" text="Blank Stock">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField layoutX="565.0" layoutY="41.0" promptText="Search Blank" />
+      <TableView layoutX="79.0" layoutY="97.0" prefHeight="474.0" prefWidth="694.0">
+        <columns>
+          <TableColumn prefWidth="103.20001220703125" text="Blank ID" />
+          <TableColumn prefWidth="218.3999481201172" text="Blank No." />
+            <TableColumn prefWidth="108.800048828125" text="Type" />
+            <TableColumn prefWidth="168.800048828125" text="Date recieived" />
+            <TableColumn prefWidth="96.0" text="Void" />
+        </columns>
+      </TableView>
+      <Button layoutX="722.0" layoutY="41.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" text="Search" />
+      <Button layoutX="79.0" layoutY="588.0" mnemonicParsing="false" onAction="#switchToAdvisorHomePage" text="Home" />
+   </children>
 </AnchorPane>
