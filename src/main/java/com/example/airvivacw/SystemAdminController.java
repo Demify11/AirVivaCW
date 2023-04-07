@@ -12,7 +12,6 @@ public class SystemAdminController {
 
     private SceneController sceneController = new SceneController();
 
-
     @FXML
     private TextField userPass;
     @FXML
@@ -22,23 +21,30 @@ public class SystemAdminController {
     @FXML
     private TextField jobType;
 
-
     DatabaseConnection currentDB = new DatabaseConnection();
     Connection connectDB = currentDB.getConnection();
-
 
     public void createAccountAction(ActionEvent e) throws SQLException, IOException{
 
         if(fullNameText.getText().isBlank() == false && userIDText.getText().isBlank() == false
                 && jobType.getText().isBlank() == false && userPass.getText().isBlank() == false)
         {
-           // Statement statement = connectDB.createStatement();
-           // String addUserDB = "";
-            //adds all new users info to DB
+            Statement statement = connectDB.createStatement();
+            String addUserDB = "INSERT INTO AVuser (user_id, name, job_type, password) VALUES (?,?,?,?)";
+
+            PreparedStatement preStm = connectDB.prepareStatement(addUserDB);
+            preStm.setString(1, userIDText.getText());
+            preStm.setString(2, fullNameText.getText());
+            preStm.setString(3, jobType.getText());
+            preStm.setString(4, userPass.getText());
+            preStm.executeUpdate();
+
+            //String addUserDB = "INSERT INTO AVuser (user_id, name, job_type, password) " +
+                   // "VALUES ('" + userIDText.getText() + "', '" + fullNameText.getText() + "', '" + jobType.getText() + "', '" + userPass.getText() + "')";
+
             //ResultSet queryResult = statement.executeQuery(addUserDB);
         }
-        //database connection
-        //SQL statement to add to database
+
     }
 
     public void launchPHP(ActionEvent e){
