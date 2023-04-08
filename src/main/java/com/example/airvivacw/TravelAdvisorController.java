@@ -51,6 +51,46 @@ public class TravelAdvisorController {
     @FXML
     private TextField searchBlankTextField;
 
+    @FXML
+    private TableView<Blanks> BlankTable1;
+
+    @FXML
+    private TableColumn<Blanks, Integer> idCol1;
+
+    @FXML
+    private TableColumn<Blanks, String> numCol1;
+
+    @FXML
+    private TableColumn<Blanks, String> typeCol1;
+
+    @FXML
+    private TextField fromTextField;
+
+    @FXML
+    private TextField toTextField;
+
+    @FXML
+    private TableView<Flights> FlightTable;
+
+    @FXML
+    private TableColumn<Flights, Integer> fNumCol;
+
+    @FXML
+    private TableColumn<Flights, String> fromCol;
+
+    @FXML
+    private TableColumn<Flights, String> toCol;
+
+    @FXML
+    private TableColumn<Flights, String> dDateCol;
+
+    @FXML
+    private TableColumn<Flights, String> airlineCol;
+
+    @FXML
+    private TableColumn<Flights, String> durationCol;
+
+
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getConnection();
 
@@ -204,6 +244,61 @@ public class TravelAdvisorController {
             BlankTable.setItems(blanksList3);
         }
     }
+
+    public void AllBlank1OnAction(ActionEvent e) throws SQLException {
+
+        ObservableList<Blanks> blanksList4 = FXCollections.observableArrayList();
+
+        Statement statement4 = connectDB.createStatement();
+        ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank");
+
+        while (resultSet4.next()) {
+            int id = resultSet4.getInt("id");
+            String number = resultSet4.getString("number");
+            String type = resultSet4.getString("type");
+            int date_received = resultSet4.getInt("date_received");
+
+            Blanks blanks = new Blanks(id, number, type, date_received);
+            blanksList4.add(blanks);
+        }
+        idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
+        numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
+        typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+        BlankTable1.setItems(blanksList4);
+    }
+
+    public void CheckFlightOnAction(ActionEvent e) throws SQLException {
+        if(fromTextField.getText().isBlank() == false && toTextField.getText().isBlank() == false){
+
+            ObservableList<Flights> flightList = FXCollections.observableArrayList();
+
+            Statement statement5 = connectDB.createStatement();
+            String showFlights = "SELECT * FROM AVflight WHERE depart_from = '" + fromTextField.getText() + "' AND destination = '" + toTextField.getText() + "'";
+            ResultSet queryResult5 = statement5.executeQuery(showFlights);
+
+            while (queryResult5.next()) {
+                int flight_num = queryResult5.getInt("flight_num");
+                String depart_from = queryResult5.getString("depart_from");
+                String destination = queryResult5.getString("destination");
+                int flight_date = queryResult5.getInt("flight_date");
+                String airline = queryResult5.getString("airline");
+                String duration = queryResult5.getString("duration");
+
+                Flights flights = new Flights(flight_num, depart_from, destination, flight_date, airline, duration);
+                flightList.add(flights);
+            }
+            fNumCol.setCellValueFactory(new PropertyValueFactory<>("flight_num"));
+            fromCol.setCellValueFactory(new PropertyValueFactory<>("depart_from"));
+            toCol.setCellValueFactory(new PropertyValueFactory<>("destination"));
+            dDateCol.setCellValueFactory(new PropertyValueFactory<>("flight_date"));
+            airlineCol.setCellValueFactory(new PropertyValueFactory<>("airline"));
+            durationCol.setCellValueFactory(new PropertyValueFactory<>("duration"));
+
+            FlightTable.setItems(flightList);
+        }
+    }
+
 }
 
 
