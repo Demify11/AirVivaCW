@@ -40,15 +40,15 @@ public class HelloController {
         if (usernameTextField.getText().isBlank() == false && passwordTextField.getText().isBlank() == false) {
 
             Statement statement = connectDB.createStatement();
-            String verifyManagerId = "SELECT * FROM AVuser WHERE job_type = 'Manager' AND user_id ='" + usernameTextField.getText() + "'";
+            String verifyManagerId = "SELECT * FROM AVuser WHERE job_type = 'Manager' AND user_id ='" + usernameTextField.getText() + "' AND password = '"+passwordTextField.getText()+"' ";
             ResultSet queryResult = statement.executeQuery(verifyManagerId);
 
             Statement statement1 = connectDB.createStatement();
-            String verifyAdminId = "SELECT * FROM AVuser WHERE job_type = 'Administrator' AND user_id ='" + usernameTextField.getText() + "'";
+            String verifyAdminId = "SELECT * FROM AVuser WHERE job_type = 'Administrator' AND user_id ='" + usernameTextField.getText() + "' AND password = '"+passwordTextField.getText()+"' ";
             ResultSet queryResult1 = statement1.executeQuery(verifyAdminId);
 
             Statement statement2 = connectDB.createStatement();
-            String verifyAdvisorId = "SELECT * FROM AVuser WHERE job_type = 'Travel Advisor' AND user_id ='" + usernameTextField.getText() + "'";
+            String verifyAdvisorId = "SELECT * FROM AVuser WHERE job_type = 'Travel Advisor' AND user_id ='" + usernameTextField.getText() + "' AND password = '"+passwordTextField.getText()+"'";
             ResultSet queryResult2 = statement2.executeQuery(verifyAdvisorId);
 
             if (queryResult.next()) {
