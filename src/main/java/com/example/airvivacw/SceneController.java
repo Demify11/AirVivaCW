@@ -1,32 +1,32 @@
 package com.example.airvivacw;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-import javax.swing.table.TableColumn;
-import javax.swing.text.TableView;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SceneController {
+
+    @FXML
+    Label advisorLabel;
 
 
     private Stage stage;
     private Scene scene;
     private Parent root;
+
+
+    public void setAdvisorUserId(String userId) {
+        advisorLabel.setText(userId);
+    }
+
 
 
     public void switchToManagerHomePage(ActionEvent event) throws IOException {
@@ -46,11 +46,8 @@ public class SceneController {
     }
 
     public void switchToAdvisorHomePage(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("AdvisorHomePage.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        HelloController hello = new HelloController();
+        hello.AdvisorPage(event);
     }
 
     public void switchToAdvisorStockPage(ActionEvent event) throws IOException, SQLException {

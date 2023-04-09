@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="635.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.airvivacw.TravelAdvisorController">
+<AnchorPane prefHeight="635.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.airvivacw.TravelAdvisorSaleController">
    <children>
       <Button layoutX="14.0" layoutY="595.0" mnemonicParsing="false" onAction="#HomeButtonOnAction" text="Home" />
       <Label layoutX="305.0" layoutY="67.0" text="Enter Customer details">

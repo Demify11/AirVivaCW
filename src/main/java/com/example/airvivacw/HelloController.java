@@ -2,9 +2,14 @@ package com.example.airvivacw;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
@@ -21,9 +26,16 @@ public class HelloController {
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getConnection();
 
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
     private SceneController sceneController = new SceneController();
 
+    String userId;
+
     public void loginButtonOnAction(ActionEvent e) throws SQLException, IOException {
+        userId = usernameTextField.getText();
 
         if (usernameTextField.getText().isBlank() == false && passwordTextField.getText().isBlank() == false) {
 
@@ -53,7 +65,7 @@ public class HelloController {
                 // User is an admin
                 loginMessageLabel.setText("Welcome Advisor");
                 // Switch to admin homepage
-                sceneController.switchToAdvisorHomePage(e);
+                AdvisorPage(e);
             }else {
                 // Invalid login
                 loginMessageLabel.setText("Invalid login");
@@ -61,5 +73,18 @@ public class HelloController {
             }else{
             loginMessageLabel.setText("please enter user id and password.");
         }
+    }
+
+    public void AdvisorPage(ActionEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdvisorHomePage.fxml"));
+        root = loader.load();
+
+        SceneController scene1 = loader.getController();
+        scene1.setAdvisorUserId(userId);
+
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

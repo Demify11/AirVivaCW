@@ -16,36 +16,6 @@ import java.sql.*;
 public class TravelAdvisorController {
 
     @FXML
-    private TextField firstNameTextField;
-
-    @FXML
-    private TextField lastNameTextField;
-
-    @FXML
-    private TextField emailAddressTextField;
-
-    @FXML
-    private TextField phoneNumberTextField;
-
-    @FXML
-    private Label errorMessageLabel;
-
-    @FXML
-    private Label numLabel;
-
-    @FXML
-    private Label typeLabel;
-
-    @FXML
-    private Label toLabel;
-
-    @FXML
-    private Label arrowLabel;
-
-    @FXML
-    private Label fromLabel;
-
-    @FXML
     private Label blankLabel;
 
     @FXML
@@ -78,100 +48,19 @@ public class TravelAdvisorController {
     @FXML
     private TextField searchBlankTextField;
 
-    @FXML
-    private TableView<Blanks> BlankTable1;
 
-    @FXML
-    private TableColumn<Blanks, Integer> idCol1;
-
-    @FXML
-    private TableColumn<Blanks, String> numCol1;
-
-    @FXML
-    private TableColumn<Blanks, String> typeCol1;
-
-    @FXML
-    private TextField fromTextField;
-
-    @FXML
-    private TextField toTextField;
-
-    @FXML
-    private TableView<Flights> FlightTable;
-
-    @FXML
-    private TableColumn<Flights, Integer> fNumCol;
-
-    @FXML
-    private TableColumn<Flights, String> fromCol;
-
-    @FXML
-    private TableColumn<Flights, String> toCol;
-
-    @FXML
-    private TableColumn<Flights, String> dDateCol;
-
-    @FXML
-    private TableColumn<Flights, String> airlineCol;
-
-    @FXML
-    private TableColumn<Flights, String> durationCol;
 
 
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getConnection();
 
-    private Blanks selectedBlank;
-    private Flights selectedFlight;
+
 
     private SceneController sceneController = new SceneController();
 
+
     public void HomeButtonOnAction(ActionEvent e) throws IOException {
         sceneController.switchToAdvisorHomePage(e);
-    }
-
-
-    public void ConfirmButtonOnAction(ActionEvent e) throws IOException, SQLException {
-        if (firstNameTextField.getText().isBlank() == false && lastNameTextField.getText().isBlank() == false && emailAddressTextField.getText().isBlank() == false && phoneNumberTextField.getText().isBlank() == false) {
-            Statement statement = connectDB.createStatement();
-            String verifyCustomer = "SELECT * FROM AVcustomer WHERE first_name = '" + firstNameTextField.getText() + "' AND last_name = '" + lastNameTextField.getText() + "' AND email_address ='" + emailAddressTextField.getText() + "' AND phone_number = '" + phoneNumberTextField.getText() + "'";
-            ResultSet queryResult = statement.executeQuery(verifyCustomer);
-
-            //to check if customer exists
-            if (!queryResult.next()) {
-                errorMessageLabel.setText("Customer does not exist");
-            } else {
-                sceneController.switchToAdvisorSalesPage1(e);
-            }
-        } else {
-            errorMessageLabel.setText("Please enter all the required details");
-        }
-    }
-
-    public void NewCustomerButtonOnAction(ActionEvent e) throws SQLException {
-        if (firstNameTextField.getText().isBlank() == false && lastNameTextField.getText().isBlank() == false && emailAddressTextField.getText().isBlank() == false && phoneNumberTextField.getText().isBlank() == false) {
-
-            Statement statement = connectDB.createStatement();
-            String verifyCustomer = "SELECT * FROM AVcustomer WHERE first_name = '" + firstNameTextField.getText() + "' AND last_name = '" + lastNameTextField.getText() + "' AND email_address ='" + emailAddressTextField.getText() + "' AND phone_number = '" + phoneNumberTextField.getText() + "'";
-            ResultSet queryResult = statement.executeQuery(verifyCustomer);
-
-            //to check if customer exists, if not inserting the new customer into the system
-            if (queryResult.next()) {
-                errorMessageLabel.setText("Customer already exists");
-            } else {
-                Statement statement1 = connectDB.createStatement();
-                String addCustomer = "INSERT INTO `AVcustomer` (`first_name`, `last_name`, `email_address`, `phone_number`) VALUES ('" + firstNameTextField.getText() + "', '" + lastNameTextField.getText() + "', '" + emailAddressTextField.getText() + "', '" + phoneNumberTextField.getText() + "')";
-
-                int rowsInserted = statement1.executeUpdate(addCustomer);
-                if (rowsInserted > 0) {
-                    errorMessageLabel.setText("Customer added successfully");
-                } else {
-                    errorMessageLabel.setText("Error adding customer");
-                }
-            }
-        } else {
-            errorMessageLabel.setText("Please enter all the required details");
-        }
     }
 
     public void AllBlankOnAction(ActionEvent e) throws SQLException {
@@ -275,217 +164,25 @@ public class TravelAdvisorController {
         }
     }
 
-    public void AllBlank1OnAction(ActionEvent e) throws SQLException {
 
-        ObservableList<Blanks> blanksList4 = FXCollections.observableArrayList();
-
-        Statement statement4 = connectDB.createStatement();
-        ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank");
-
-        while (resultSet4.next()) {
-            int id = resultSet4.getInt("id");
-            String number = resultSet4.getString("number");
-            String type = resultSet4.getString("type");
-            int date_received = resultSet4.getInt("date_received");
-
-            Blanks blanks = new Blanks(id, number, type, date_received);
-            blanksList4.add(blanks);
-        }
-        idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
-        numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
-        typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
-
-        BlankTable1.setItems(blanksList4);
-    }
-
-    public void InterlineBlank1OnAction(ActionEvent e) throws SQLException {
-
-        ObservableList<Blanks> blanksList5 = FXCollections.observableArrayList();
-
-        Statement statement4 = connectDB.createStatement();
-        ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '444';");
-
-        while (resultSet4.next()) {
-            int id = resultSet4.getInt("id");
-            String number = resultSet4.getString("number");
-            String type = resultSet4.getString("type");
-            int date_received = resultSet4.getInt("date_received");
-
-            Blanks blanks = new Blanks(id, number, type, date_received);
-            blanksList5.add(blanks);
-        }
-        idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
-        numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
-        typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
-
-        BlankTable1.setItems(blanksList5);
-    }
-
-    public void InterlineBlank2OnAction(ActionEvent e) throws SQLException {
-
-        ObservableList<Blanks> blanksList6 = FXCollections.observableArrayList();
-
-        Statement statement4 = connectDB.createStatement();
-        ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '440';");
-
-        while (resultSet4.next()) {
-            int id = resultSet4.getInt("id");
-            String number = resultSet4.getString("number");
-            String type = resultSet4.getString("type");
-            int date_received = resultSet4.getInt("date_received");
-
-            Blanks blanks = new Blanks(id, number, type, date_received);
-            blanksList6.add(blanks);
-        }
-        idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
-        numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
-        typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
-
-        BlankTable1.setItems(blanksList6);
-    }
-
-    public void InterlineBlank3OnAction(ActionEvent e) throws SQLException {
-
-        ObservableList<Blanks> blanksList7 = FXCollections.observableArrayList();
-
-        Statement statement4 = connectDB.createStatement();
-        ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '420';");
-
-        while (resultSet4.next()) {
-            int id = resultSet4.getInt("id");
-            String number = resultSet4.getString("number");
-            String type = resultSet4.getString("type");
-            int date_received = resultSet4.getInt("date_received");
-
-            Blanks blanks = new Blanks(id, number, type, date_received);
-            blanksList7.add(blanks);
-        }
-        idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
-        numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
-        typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
-
-        BlankTable1.setItems(blanksList7);
-    }
-
-    public void DomesticBlank1OnAction(ActionEvent e) throws SQLException {
-
-        ObservableList<Blanks> blanksList8 = FXCollections.observableArrayList();
-
-        Statement statement4 = connectDB.createStatement();
-        ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '201';");
-
-        while (resultSet4.next()) {
-            int id = resultSet4.getInt("id");
-            String number = resultSet4.getString("number");
-            String type = resultSet4.getString("type");
-            int date_received = resultSet4.getInt("date_received");
-
-            Blanks blanks = new Blanks(id, number, type, date_received);
-            blanksList8.add(blanks);
-        }
-        idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
-        numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
-        typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
-
-        BlankTable1.setItems(blanksList8);
-    }
-
-    public void DomesticBlank2OnAction(ActionEvent e) throws SQLException {
-
-        ObservableList<Blanks> blanksList9 = FXCollections.observableArrayList();
-
-        Statement statement4 = connectDB.createStatement();
-        ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '101';");
-
-        while (resultSet4.next()) {
-            int id = resultSet4.getInt("id");
-            String number = resultSet4.getString("number");
-            String type = resultSet4.getString("type");
-            int date_received = resultSet4.getInt("date_received");
-
-            Blanks blanks = new Blanks(id, number, type, date_received);
-            blanksList9.add(blanks);
-        }
-        idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
-        numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
-        typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
-
-        BlankTable1.setItems(blanksList9);
-    }
-
-    public void CheckFlightOnAction(ActionEvent e) throws SQLException {
-        if(fromTextField.getText().isBlank() == false && toTextField.getText().isBlank() == false){
-
-            ObservableList<Flights> flightList = FXCollections.observableArrayList();
-
-            Statement statement5 = connectDB.createStatement();
-            String showFlights = "SELECT * FROM AVflight WHERE depart_from = '" + fromTextField.getText() + "' AND destination = '" + toTextField.getText() + "'";
-            ResultSet queryResult5 = statement5.executeQuery(showFlights);
-
-            while (queryResult5.next()) {
-                int flight_num = queryResult5.getInt("flight_num");
-                String depart_from = queryResult5.getString("depart_from");
-                String destination = queryResult5.getString("destination");
-                int flight_date = queryResult5.getInt("flight_date");
-                String airline = queryResult5.getString("airline");
-                String duration = queryResult5.getString("duration");
-
-                Flights flights = new Flights(flight_num, depart_from, destination, flight_date, airline, duration);
-                flightList.add(flights);
-            }
-            fNumCol.setCellValueFactory(new PropertyValueFactory<>("flight_num"));
-            fromCol.setCellValueFactory(new PropertyValueFactory<>("depart_from"));
-            toCol.setCellValueFactory(new PropertyValueFactory<>("destination"));
-            dDateCol.setCellValueFactory(new PropertyValueFactory<>("flight_date"));
-            airlineCol.setCellValueFactory(new PropertyValueFactory<>("airline"));
-            durationCol.setCellValueFactory(new PropertyValueFactory<>("duration"));
-
-            FlightTable.setItems(flightList);
-        }
-    }
-
-    public void SelectBlankOnAction(ActionEvent e){
-        selectedBlank = BlankTable1.getSelectionModel().getSelectedItem();
-        System.out.println(selectedBlank.getNumber());
-        if (selectedBlank != null) {
-            numLabel.setText(selectedBlank.getNumber());
-            typeLabel.setText(selectedBlank.getType());
-        }
-    }
-
-    public void SelectFlightOnAction(ActionEvent e){
-        selectedFlight = FlightTable.getSelectionModel().getSelectedItem();
-        if (selectedFlight != null) {
-            toLabel.setText(selectedFlight.getDepart_from());
-            arrowLabel.setText("->");
-            fromLabel.setText(selectedFlight.getDestination());
-        }
-    }
-
-    public void SelectedBlankOnAction(ActionEvent e){
-        if (selectedBlank != null) {
-            blankLabel.setText(selectedBlank.getNumber());
-            typeLabel1.setText(selectedBlank.getType());
-        }
-        if (selectedFlight != null) {
-            fromLabel1.setText(selectedFlight.getDepart_from());
-            toLabel1.setText(selectedFlight.getDestination());
-        }
-
-    }
-
-    public void NextButtonOnAction(ActionEvent e) throws IOException {
-        sceneController.switchToAdvisorSalesPage2(e);
-    }
-
-    public void BackOnAction1(ActionEvent e) throws IOException {
-        sceneController.switchToAdvisorSalesPage(e);
-    }
 
     public void BackOnAction(ActionEvent e) throws IOException {
         sceneController.switchToAdvisorSalesPage1(e);
     }
 
+
+    public void setBlankNum(String number) {
+        blankLabel.setText(number);
+    }
+    public void setBlankType(String type) {
+        typeLabel1.setText(type);
+    }
+    public void setFlightFrom(String from){
+        fromLabel1.setText(from);
+    }
+    public void setFlightTo(String to){
+        toLabel1.setText(to);
+    }
 }
 
 

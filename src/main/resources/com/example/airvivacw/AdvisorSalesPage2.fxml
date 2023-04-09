@@ -25,7 +25,6 @@
       <Label fx:id="fromLabel1" layoutX="175.0" layoutY="132.0" />
       <Label fx:id="typeLabel1" layoutX="382.0" layoutY="101.0" />
       <Label fx:id="toLabel1" layoutX="382.0" layoutY="132.0" />
-      <Button layoutX="557.0" layoutY="97.0" mnemonicParsing="false" onAction="#SelectedBlankOnAction" text="Selected Blank" />
       <Label layoutX="75.0" layoutY="336.0" text="Payment Method :" />
       <MenuButton layoutX="189.0" layoutY="332.0" mnemonicParsing="false" text="Select Method">
         <items>
