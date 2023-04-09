@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="635.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.airvivacw.TravelAdvisorController">
+   <children>
+      <Label layoutX="33.0" layoutY="33.0" text="Ticket Booking">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="75.0" layoutY="228.0" text="Discount :" />
+      <Label layoutX="75.0" layoutY="282.0" text="Commission :" />
+      <Label layoutX="97.0" layoutY="101.0" text="Blank :" />
+      <Button layoutX="33.0" layoutY="586.0" mnemonicParsing="false" onAction="#BackOnAction" text="Back" />
+      <Label layoutX="97.0" layoutY="132.0" text="Flight from :" />
+      <Label layoutX="331.0" layoutY="101.0" text="Type :" />
+      <Label layoutX="333.0" layoutY="132.0" text="To :" />
+      <Label fx:id="blankLabel" layoutX="162.0" layoutY="101.0" />
+      <Label fx:id="fromLabel1" layoutX="175.0" layoutY="132.0" />
+      <Label fx:id="typeLabel1" layoutX="382.0" layoutY="101.0" />
+      <Label fx:id="toLabel1" layoutX="382.0" layoutY="132.0" />
+      <Button layoutX="557.0" layoutY="97.0" mnemonicParsing="false" onAction="#SelectedBlankOnAction" text="Selected Blank" />
+      <Label layoutX="75.0" layoutY="336.0" text="Payment Method :" />
+      <MenuButton layoutX="189.0" layoutY="332.0" mnemonicParsing="false" text="Select Method">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Cash" />
+          <MenuItem mnemonicParsing="false" text="Card" />
+        </items>
+      </MenuButton>
+      <Button layoutX="163.0" layoutY="224.0" mnemonicParsing="false" text="Apply Discount" />
+   </children>
+</AnchorPane>

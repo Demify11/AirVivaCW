@@ -31,6 +31,33 @@ public class TravelAdvisorController {
     private Label errorMessageLabel;
 
     @FXML
+    private Label numLabel;
+
+    @FXML
+    private Label typeLabel;
+
+    @FXML
+    private Label toLabel;
+
+    @FXML
+    private Label arrowLabel;
+
+    @FXML
+    private Label fromLabel;
+
+    @FXML
+    private Label blankLabel;
+
+    @FXML
+    private Label typeLabel1;
+
+    @FXML
+    private Label fromLabel1;
+
+    @FXML
+    private Label toLabel1;
+
+    @FXML
     private TableView<Blanks> BlankTable;
 
     @FXML
@@ -94,12 +121,15 @@ public class TravelAdvisorController {
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getConnection();
 
+    private Blanks selectedBlank;
+    private Flights selectedFlight;
 
     private SceneController sceneController = new SceneController();
 
     public void HomeButtonOnAction(ActionEvent e) throws IOException {
         sceneController.switchToAdvisorHomePage(e);
     }
+
 
     public void ConfirmButtonOnAction(ActionEvent e) throws IOException, SQLException {
         if (firstNameTextField.getText().isBlank() == false && lastNameTextField.getText().isBlank() == false && emailAddressTextField.getText().isBlank() == false && phoneNumberTextField.getText().isBlank() == false) {
@@ -268,6 +298,121 @@ public class TravelAdvisorController {
         BlankTable1.setItems(blanksList4);
     }
 
+    public void InterlineBlank1OnAction(ActionEvent e) throws SQLException {
+
+        ObservableList<Blanks> blanksList5 = FXCollections.observableArrayList();
+
+        Statement statement4 = connectDB.createStatement();
+        ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '444';");
+
+        while (resultSet4.next()) {
+            int id = resultSet4.getInt("id");
+            String number = resultSet4.getString("number");
+            String type = resultSet4.getString("type");
+            int date_received = resultSet4.getInt("date_received");
+
+            Blanks blanks = new Blanks(id, number, type, date_received);
+            blanksList5.add(blanks);
+        }
+        idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
+        numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
+        typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+        BlankTable1.setItems(blanksList5);
+    }
+
+    public void InterlineBlank2OnAction(ActionEvent e) throws SQLException {
+
+        ObservableList<Blanks> blanksList6 = FXCollections.observableArrayList();
+
+        Statement statement4 = connectDB.createStatement();
+        ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '440';");
+
+        while (resultSet4.next()) {
+            int id = resultSet4.getInt("id");
+            String number = resultSet4.getString("number");
+            String type = resultSet4.getString("type");
+            int date_received = resultSet4.getInt("date_received");
+
+            Blanks blanks = new Blanks(id, number, type, date_received);
+            blanksList6.add(blanks);
+        }
+        idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
+        numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
+        typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+        BlankTable1.setItems(blanksList6);
+    }
+
+    public void InterlineBlank3OnAction(ActionEvent e) throws SQLException {
+
+        ObservableList<Blanks> blanksList7 = FXCollections.observableArrayList();
+
+        Statement statement4 = connectDB.createStatement();
+        ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '420';");
+
+        while (resultSet4.next()) {
+            int id = resultSet4.getInt("id");
+            String number = resultSet4.getString("number");
+            String type = resultSet4.getString("type");
+            int date_received = resultSet4.getInt("date_received");
+
+            Blanks blanks = new Blanks(id, number, type, date_received);
+            blanksList7.add(blanks);
+        }
+        idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
+        numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
+        typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+        BlankTable1.setItems(blanksList7);
+    }
+
+    public void DomesticBlank1OnAction(ActionEvent e) throws SQLException {
+
+        ObservableList<Blanks> blanksList8 = FXCollections.observableArrayList();
+
+        Statement statement4 = connectDB.createStatement();
+        ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '201';");
+
+        while (resultSet4.next()) {
+            int id = resultSet4.getInt("id");
+            String number = resultSet4.getString("number");
+            String type = resultSet4.getString("type");
+            int date_received = resultSet4.getInt("date_received");
+
+            Blanks blanks = new Blanks(id, number, type, date_received);
+            blanksList8.add(blanks);
+        }
+        idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
+        numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
+        typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+        BlankTable1.setItems(blanksList8);
+    }
+
+    public void DomesticBlank2OnAction(ActionEvent e) throws SQLException {
+
+        ObservableList<Blanks> blanksList9 = FXCollections.observableArrayList();
+
+        Statement statement4 = connectDB.createStatement();
+        ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '101';");
+
+        while (resultSet4.next()) {
+            int id = resultSet4.getInt("id");
+            String number = resultSet4.getString("number");
+            String type = resultSet4.getString("type");
+            int date_received = resultSet4.getInt("date_received");
+
+            Blanks blanks = new Blanks(id, number, type, date_received);
+            blanksList9.add(blanks);
+        }
+        idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
+        numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
+        typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+        BlankTable1.setItems(blanksList9);
+    }
+
     public void CheckFlightOnAction(ActionEvent e) throws SQLException {
         if(fromTextField.getText().isBlank() == false && toTextField.getText().isBlank() == false){
 
@@ -297,6 +442,48 @@ public class TravelAdvisorController {
 
             FlightTable.setItems(flightList);
         }
+    }
+
+    public void SelectBlankOnAction(ActionEvent e){
+        selectedBlank = BlankTable1.getSelectionModel().getSelectedItem();
+        System.out.println(selectedBlank.getNumber());
+        if (selectedBlank != null) {
+            numLabel.setText(selectedBlank.getNumber());
+            typeLabel.setText(selectedBlank.getType());
+        }
+    }
+
+    public void SelectFlightOnAction(ActionEvent e){
+        selectedFlight = FlightTable.getSelectionModel().getSelectedItem();
+        if (selectedFlight != null) {
+            toLabel.setText(selectedFlight.getDepart_from());
+            arrowLabel.setText("->");
+            fromLabel.setText(selectedFlight.getDestination());
+        }
+    }
+
+    public void SelectedBlankOnAction(ActionEvent e){
+        if (selectedBlank != null) {
+            blankLabel.setText(selectedBlank.getNumber());
+            typeLabel1.setText(selectedBlank.getType());
+        }
+        if (selectedFlight != null) {
+            fromLabel1.setText(selectedFlight.getDepart_from());
+            toLabel1.setText(selectedFlight.getDestination());
+        }
+
+    }
+
+    public void NextButtonOnAction(ActionEvent e) throws IOException {
+        sceneController.switchToAdvisorSalesPage2(e);
+    }
+
+    public void BackOnAction1(ActionEvent e) throws IOException {
+        sceneController.switchToAdvisorSalesPage(e);
+    }
+
+    public void BackOnAction(ActionEvent e) throws IOException {
+        sceneController.switchToAdvisorSalesPage1(e);
     }
 
 }
