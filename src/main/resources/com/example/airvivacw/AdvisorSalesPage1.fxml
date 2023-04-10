@@ -58,5 +58,7 @@
       <Label fx:id="fromLabel" layoutX="526.0" layoutY="351.0" />
       <Label fx:id="toLabel" layoutX="652.0" layoutY="351.0" />
       <Label fx:id="arrowLabel" layoutX="599.0" layoutY="351.0" />
+      <Label layoutX="265.0" layoutY="42.0" text="Name :" />
+      <Label fx:id="nameLabel" layoutX="309.0" layoutY="43.0" />
    </children>
 </AnchorPane>

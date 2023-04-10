@@ -4,7 +4,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="635.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.airvivacw.TravelAdvisorController">
@@ -28,10 +30,47 @@
       <Label layoutX="75.0" layoutY="336.0" text="Payment Method :" />
       <MenuButton layoutX="189.0" layoutY="332.0" mnemonicParsing="false" text="Select Method">
         <items>
-          <MenuItem mnemonicParsing="false" text="Cash" />
-          <MenuItem mnemonicParsing="false" text="Card" />
+          <MenuItem mnemonicParsing="false" onAction="#CashOnAction" text="Cash" />
+          <MenuItem mnemonicParsing="false" onAction="#CardOnAction" text="Card" />
         </items>
       </MenuButton>
-      <Button layoutX="163.0" layoutY="224.0" mnemonicParsing="false" text="Apply Discount" />
+      <Button layoutX="186.0" layoutY="224.0" mnemonicParsing="false" onAction="#ApplyDiscountOnAction" text="Apply Discount" />
+      <MenuButton layoutX="189.0" layoutY="278.0" mnemonicParsing="false" text="Select Rate">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#InterlineCommissionOnAction" text="Interline rate" />
+          <MenuItem mnemonicParsing="false" onAction="#InterlineCommissionOnAction" text="Domestic rate" />
+        </items>
+      </MenuButton>
+      <Label fx:id="discountLabel" layoutX="368.0" layoutY="228.0" text="After Discount :" />
+      <Label fx:id="CommLabel" layoutX="368.0" layoutY="282.0" text="After Commission :" />
+      <Label fx:id="totalLabel" layoutX="603.0" layoutY="572.0" text="Total amount :">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="97.0" layoutY="175.0" text="Name :" />
+      <Label fx:id="nameLabel1" layoutX="146.0" layoutY="175.0" />
+      <Button layoutX="517.0" layoutY="573.0" mnemonicParsing="false" onAction="#CheckTotalOnAction" text="Check total" />
+      <VBox fx:id="addDetails" layoutX="353.0" layoutY="336.0" prefHeight="178.0" prefWidth="211.0">
+         <children>
+            <Label text="Full name(As appears on the card) :" />
+            <TextField prefHeight="26.0" prefWidth="89.0" />
+            <Label text="Card number :" />
+            <TextField />
+            <Label text="CVV :" />
+            <TextField />
+            <Label text="Expiry date :" />
+            <TextField />
+         </children>
+      </VBox>
+      <VBox fx:id="cashAmount" layoutX="135.0" layoutY="387.0" prefHeight="82.0" prefWidth="156.0">
+         <children>
+            <Label text="Amount recieved :" />
+            <TextField fx:id="amountText" />
+            <Button mnemonicParsing="false" onAction="#ShowBalanceOnAction" text="Show balance" />
+            <Label text="Balance :" />
+            <Label fx:id="balanceLabel" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

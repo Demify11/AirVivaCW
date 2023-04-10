@@ -76,6 +76,9 @@ public class TravelAdvisorSaleController1 {
     @FXML
     private TableColumn<Flights, String> durationCol;
 
+    @FXML
+    private Label nameLabel;
+
 
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getConnection();
@@ -91,6 +94,8 @@ public class TravelAdvisorSaleController1 {
     String type;
     String from;
     String to;
+    String total;
+    String name;
 
     private SceneController sceneController = new SceneController();
 
@@ -283,11 +288,13 @@ public class TravelAdvisorSaleController1 {
     }
 
 
-    public void NextButtonOnAction(ActionEvent e) throws IOException {
+    public void NextButtonOnAction(ActionEvent e) throws IOException, SQLException {
         number = selectedBlank.getNumber();
         type = selectedBlank.getType();
         from = selectedFlight.getDepart_from();
         to = selectedFlight.getDestination();
+        name = nameLabel.getText();
+
         SalePage2(e);
     }
 
@@ -295,7 +302,7 @@ public class TravelAdvisorSaleController1 {
         sceneController.switchToAdvisorSalesPage(e);
     }
 
-    public void SalePage2(ActionEvent e) throws IOException {
+    public void SalePage2(ActionEvent e) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AdvisorSalesPage2.fxml"));
         root = loader.load();
 
@@ -304,11 +311,28 @@ public class TravelAdvisorSaleController1 {
         scene2.setBlankType(type);
         scene2.setFlightFrom(from);
         scene2.setFlightTo(to);
+        scene2.setNameLabel1(name);
+
+        Statement statement = connectDB.createStatement();
+        total = "SELECT price FROM AVflight WHERE depart_from = '"+from+"' AND destination = '"+to+"'";
+        ResultSet resultSet = statement.executeQuery(total);
+
+        if(resultSet.next()) {
+            double price = resultSet.getDouble("price");
+            scene2.setTotalAmount(Double.toString(price));
+        }
+
+        scene2.getAddDetails().setVisible(false);
+        scene2.getCashAmount().setVisible(false);
 
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void setCustomer(String name){
+        nameLabel.setText(name);
     }
 
 

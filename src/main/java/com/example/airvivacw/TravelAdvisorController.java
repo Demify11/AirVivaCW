@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.sql.*;
@@ -48,8 +49,29 @@ public class TravelAdvisorController {
     @FXML
     private TextField searchBlankTextField;
 
+    @FXML
+    private Label discountLabel;
 
+    @FXML
+    private Label CommLabel;
 
+    @FXML
+    private Label totalLabel;
+
+    @FXML
+    private Label nameLabel1;
+
+    @FXML
+    private VBox addDetails;
+
+    @FXML
+    private VBox cashAmount;
+
+    @FXML
+    private Label balanceLabel;
+
+    @FXML
+    private TextField amountText;
 
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getConnection();
@@ -63,7 +85,7 @@ public class TravelAdvisorController {
         sceneController.switchToAdvisorHomePage(e);
     }
 
-    public void AllBlankOnAction(ActionEvent e) throws SQLException {
+    public void AllBlankOnAction() throws SQLException {
 
         ObservableList<Blanks> blanksList = FXCollections.observableArrayList();
 
@@ -87,7 +109,7 @@ public class TravelAdvisorController {
         BlankTable.setItems(blanksList);
     }
 
-    public void InterlineBlankOnAction(ActionEvent e) throws SQLException {
+    public void InterlineBlankOnAction() throws SQLException {
 
         ObservableList<Blanks> blanksList1 = FXCollections.observableArrayList();
 
@@ -111,7 +133,7 @@ public class TravelAdvisorController {
         BlankTable.setItems(blanksList1);
     }
 
-    public void DomesticBlankOnAction(ActionEvent e) throws SQLException {
+    public void DomesticBlankOnAction() throws SQLException {
 
         ObservableList<Blanks> blanksList2 = FXCollections.observableArrayList();
 
@@ -135,7 +157,7 @@ public class TravelAdvisorController {
         BlankTable.setItems(blanksList2);
     }
 
-    public void SearchOnAction(ActionEvent e) throws SQLException {
+    public void SearchOnAction() throws SQLException {
 
 
         if (searchBlankTextField.getText().isBlank() == false) {
@@ -183,6 +205,100 @@ public class TravelAdvisorController {
     public void setFlightTo(String to){
         toLabel1.setText(to);
     }
+    public void setTotalAmount(String price){
+        totalLabel.setText("Total amount : " +price);
+    }
+    public void setNameLabel1(String name){
+        nameLabel1.setText(name);
+    }
+
+    double calc1;
+
+    public void InterlineCommissionOnAction() throws SQLException {
+        Statement stm = connectDB.createStatement();
+        String commRate = "SELECT percentage from AVcommission where type = '"+typeLabel1.getText()+"'";
+        ResultSet rs = stm.executeQuery(commRate);
+
+        if(rs.next()){
+            double percentage = rs.getDouble("percentage");
+
+            String totalLabelText = totalLabel.getText();
+            String numericPart = totalLabelText.substring(totalLabelText.indexOf(":") + 1).trim();
+            double total = Double.parseDouble(numericPart);
+
+            calc1 = percentage*total;
+
+            CommLabel.setText("After commission : +" + calc1);
+        }
+
+    }
+
+    double calc;
+
+    public void ApplyDiscountOnAction() throws SQLException {
+        Statement stm = connectDB.createStatement();
+        //Statement stm1 = connectDB.createStatement();
+        String name = nameLabel1.getText();
+        String[] parts = name.split("\\s", 2);
+        String firstName = parts[0];
+        String lastName = parts[1];
+
+        String disc = "SELECT fixed_discount FROM AVcustomer where first_name = '"+firstName+"' AND last_name = '"+lastName+"'";
+        //String disc1 = "SELECT flexible_discount FROM AVcustomer where first_name = '"+firstName+"' AND last_name = '"+lastName+"'";
+        ResultSet rs = stm.executeQuery(disc);
+        //ResultSet rs1 = stm1.executeQuery(disc1);
+
+        if(rs.next()){
+            double fixed = rs.getDouble("fixed_discount");
+            String totalLabelText = totalLabel.getText();
+            String numericPart = totalLabelText.substring(totalLabelText.indexOf(":") + 1).trim();
+            double total = Double.parseDouble(numericPart);
+
+            System.out.println(total);
+            calc = fixed*total;
+            discountLabel.setText("After discount : -" + calc);
+        }
+    }
+
+    public void CheckTotalOnAction(){
+        double toAdd = -calc + calc1;
+        String totalLabelText = totalLabel.getText();
+        String numericPart = totalLabelText.substring(totalLabelText.indexOf(":") + 1).trim();
+        double total = Double.parseDouble(numericPart);
+        double totalAmount = toAdd + total;
+        totalLabel.setText("Total amount : " + totalAmount);
+    }
+
+
+    public VBox getAddDetails() {
+        return addDetails;
+    }
+
+    public VBox getCashAmount() {
+        return cashAmount;
+    }
+
+    public void CashOnAction(){
+        addDetails.setVisible(false);
+        cashAmount.setVisible(true);
+    }
+
+    public void CardOnAction(){
+        cashAmount.setVisible(false);
+        addDetails.setVisible(true);
+    }
+
+    public void ShowBalanceOnAction(){
+        if(amountText.getText().isBlank() == false) {
+            String totalLabelText = totalLabel.getText();
+            String numericPart = totalLabelText.substring(totalLabelText.indexOf(":") + 1).trim();
+            double total = Double.parseDouble(numericPart);
+            double received = Double.parseDouble(amountText.getText());
+            double balance = received - total;
+            balanceLabel.setText(String.valueOf(balance));
+        }
+    }
+
 }
 
 

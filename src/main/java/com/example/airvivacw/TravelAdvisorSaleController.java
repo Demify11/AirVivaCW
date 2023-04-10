@@ -2,8 +2,13 @@ package com.example.airvivacw;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -34,6 +39,12 @@ public class TravelAdvisorSaleController {
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getConnection();
 
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    String name;
+
     public void HomeButtonOnAction(ActionEvent e) throws IOException {
         sceneController.switchToAdvisorHomePage(e);
     }
@@ -49,12 +60,28 @@ public class TravelAdvisorSaleController {
             if (!queryResult.next()) {
                 errorMessageLabel.setText("Customer does not exist");
             } else {
-                sceneController.switchToAdvisorSalesPage1(e);
+                name = firstNameTextField.getText() + " " +lastNameTextField.getText();
+                SalePage1(e);
             }
         } else {
             errorMessageLabel.setText("Please enter all the required details");
         }
     }
+
+
+    public void SalePage1(ActionEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdvisorSalesPage1.fxml"));
+        root = loader.load();
+
+        TravelAdvisorSaleController1 cont1 = loader.getController();
+        cont1.setCustomer(name);
+
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     public void NewCustomerButtonOnAction(ActionEvent e) throws SQLException {
         if (firstNameTextField.getText().isBlank() == false && lastNameTextField.getText().isBlank() == false && emailAddressTextField.getText().isBlank() == false && phoneNumberTextField.getText().isBlank() == false) {
