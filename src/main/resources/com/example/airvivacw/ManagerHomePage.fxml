@@ -1,30 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="635.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.airvivacw.ManagerController">
     <children>
-        <Button layoutX="30.0" layoutY="596.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="28.0" prefWidth="68.0" text="Log Out" />
-        <TabPane layoutX="132.0" prefHeight="638.0" prefWidth="721.0" tabClosingPolicy="UNAVAILABLE">
-            <tabs>
-                <Tab text="Report" />
-                <Tab text="Blank" />
-                <Tab text="Discount">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
-        <ImageView fitHeight="164.0" fitWidth="123.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@air_via_logo.png" />
-            </image>
-        </ImageView>
+      <TabPane prefHeight="635.0" prefWidth="849.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Set Discount">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="609.0" prefWidth="815.0">
+                     <children>
+                        <TextField fx:id="searchCustomerField" layoutX="307.0" layoutY="128.0" prefHeight="52.0" prefWidth="236.0" />
+                        <Text layoutX="364.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Customer Email" />
+                        <Text layoutX="389.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Set Discounts" />
+                        <TextField fx:id="fixedDiscountField" layoutX="307.0" layoutY="319.0" prefHeight="42.0" prefWidth="48.0" />
+                        <Button layoutX="414.0" layoutY="328.0" mnemonicParsing="false" onAction="#updateFixedDiscount" text="Fixed Discount" />
+                        <Button layoutX="571.0" layoutY="142.0" mnemonicParsing="false" text="search" />
+                        <Label fx:id="updateDiscountLabel" layoutX="354.0" layoutY="462.0" onInputMethodTextChanged="#updateFixedDiscount" />
+                          <Button layoutX="26.0" layoutY="535.0" mnemonicParsing="false" onAction="#logoutButtonOnAction" prefHeight="28.0" prefWidth="68.0" text="Log Out" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Manage Blanks">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="viewblankstable" layoutX="79.0" layoutY="62.0" onMouseClicked="#clickedColumn" prefHeight="330.0" prefWidth="691.0">
+                          <columns>
+                            <TableColumn fx:id="ids" prefWidth="64.0" text="ID" />
+                            <TableColumn fx:id="numbers" prefWidth="158.0" text="Blank" />
+                              <TableColumn fx:id="types" prefWidth="152.0" text="Type" />
+                              <TableColumn fx:id="owners" prefWidth="181.0" text="Owner" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="27.0" layoutY="25.0" mnemonicParsing="false" onAction="#loadBlanksOnAction" text="Load Blanks" />
+                        <ComboBox fx:id="usersDropDown" layoutX="517.0" layoutY="465.0" prefWidth="150.0" />
+                        <Button layoutX="374.0" layoutY="518.0" mnemonicParsing="false" onAction="#assignBlankOnAction" text="Re-Assign Blank" />
+                        <TextField fx:id="enterBlankAssignField" layoutX="161.0" layoutY="465.0" />
+                        <Label layoutX="206.0" layoutY="442.0" text="Enter Blank" />
+                        <Label layoutX="557.0" layoutY="442.0" text="System Users" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="InterLine Report">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Ticket Report">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab text="Domenstic Report">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
     </children>
 </AnchorPane>
