@@ -55,7 +55,10 @@ public class ManagerController {
     public void updateFixedDiscount(ActionEvent e) throws SQLException {
         if (!searchCustomerField.getText().isBlank()) {
             Statement statement = connectDB.createStatement();
-            String findDiscount = "UPDATE AVcustomer SET fixed_discount ='" + fixedDiscountField.getText() + "' WHERE email_address ='" + searchCustomerField.getText() + "'";
+            String ar = fixedDiscountField.getText();
+            double ar2 = Integer.parseInt(ar);
+            ar2 = ar2/100;
+            String findDiscount = "UPDATE AVcustomer SET fixed_discount ='" + ar2 + "' WHERE email_address ='" + searchCustomerField.getText() + "'";
             int queryResult = statement.executeUpdate(findDiscount);
             if (queryResult > 0) {
                 updateDiscountLabel.setText("You Updated The Discount Rate");
