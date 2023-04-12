@@ -1,10 +1,14 @@
 package com.example.airvivacw;
 
+import com.mysql.cj.xdevapi.Result;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import java.awt.*;
 import java.io.IOException;
-import java.awt.Desktop;
 import java.net.URI;
 import java.sql.*;
 
@@ -21,7 +25,7 @@ public class SystemAdminController {
     @FXML
     private TextField blankDateText;
     @FXML
-    private TextField userPass;
+    private PasswordField userPass;
     @FXML
     private TextField fullNameText;
     @FXML
@@ -32,11 +36,37 @@ public class SystemAdminController {
     private TextField blankDelText;
     @FXML
     private TextField jobType;
-
-
+    @FXML
+    private TextField newComText;
+    @FXML
+    private TextField updateExchangeText;
+    @FXML
+    private Label errorMessageLabel;
+    @FXML
+    private Label blankErrorLabel;
 
     DatabaseConnection currentDB = new DatabaseConnection();
     Connection connectDB = currentDB.getConnection();
+
+    public void changeInterlineAction(ActionEvent e) throws SQLException, IOException{
+        Statement stm = connectDB.createStatement();
+        String interChange = "UPDATE AVcommission SET percentage = '" + newComText.getText() + "' WHERE id = 1";
+        int res = stm.executeUpdate(interChange);
+    }
+
+    public void changeDomesticAction(ActionEvent e) throws SQLException, IOException{
+        Statement stm = connectDB.createStatement();
+        String domChange = "UPDATE AVcommission SET percentage = '" + newComText.getText() + "' WHERE id = 2";
+        int res = stm.executeUpdate(domChange);
+
+    }
+
+    public void changeRateAction(ActionEvent e) throws SQLException, IOException{
+        Statement stm = connectDB.createStatement();
+        String rateChange = "UPDATE AVcurrency SET rate = '" + updateExchangeText.getText() + "' WHERE id = 1";
+        int res = stm.executeUpdate(rateChange);
+
+    }
 
     public void createAccountAction(ActionEvent e) throws SQLException, IOException{
 
@@ -52,13 +82,11 @@ public class SystemAdminController {
             preStm.setString(3, jobType.getText());
             preStm.setString(4, userPass.getText());
             preStm.executeUpdate();
-
         }
 
     }
 
     public void deleteAccountAction(ActionEvent e) throws SQLException, IOException{
-        //See if there's a way of implementing this using drop down instead of input
         Statement statement = connectDB.createStatement();
         String verifyUser = "SELECT user_id FROM AVuser WHERE user_id = '" + delUserText.getText() + "'";
         ResultSet res = statement.executeQuery(verifyUser);
@@ -70,8 +98,7 @@ public class SystemAdminController {
             int resAcc = stm1.executeUpdate(delAcc);
         }
         else {
-            //add functionality that displays message in GUI
-            System.out.println("blank doesn't exist");
+            //message to display that user tried an invalid ID
         }
 
     }
@@ -88,10 +115,8 @@ public class SystemAdminController {
             int resDel = stm1.executeUpdate(delBlank);
         }
         else {
-            //add functionality that displays message in GUI
-            System.out.println("blank doesn't exist");
+         //message to display that user tried an invalid
         }
-
     }
 
     public void createBlankAction(ActionEvent e) throws SQLException, IOException{
@@ -106,27 +131,13 @@ public class SystemAdminController {
             prepStm.setString(3, blankTypeText.getText());
             prepStm.setString(4, blankDateText.getText());
             prepStm.executeUpdate();
-
         }
 
     }
-
 
     public void logoutButtonOnAction(ActionEvent e) throws IOException {
         sceneController.switchToLoginPage(e);
     }
 
 }
-/*
- public void launchPHP(ActionEvent e){
-        try{
-            Desktop.getDesktop().browse(new URI("https://smcse.city.ac.uk/phpmyadmin/"));
-        } catch(Exception c){
-            c.printStackTrace();
-        }
-    }
-    public void getUserDetails(ActionEvent e){
-        //SQL statement that loads users details based on selected userID
-        //surnameLabel.setText()
-    }
- */
+
