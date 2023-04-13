@@ -321,9 +321,9 @@ public class TravelAdvisorSaleController1 {
     public void SelectFlightOnAction(ActionEvent e){
         selectedFlight = FlightTable.getSelectionModel().getSelectedItem();
         if (selectedFlight != null){
-            toLabel.setText(selectedFlight.getDepart_from());
+            toLabel.setText(selectedFlight.getDestination());
             arrowLabel.setText("->");
-            fromLabel.setText(selectedFlight.getDestination());
+            fromLabel.setText(selectedFlight.getDepart_from());
         }
     }
 

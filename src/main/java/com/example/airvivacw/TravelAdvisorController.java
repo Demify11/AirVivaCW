@@ -459,6 +459,10 @@ public class TravelAdvisorController {
                 messageLabel.setText("Error completing payment");
             }
     }
+
+    public void DoneOnAction(ActionEvent e) throws IOException {
+        sceneController.switchToAdvisorHomePage(e);
+    }
 }
 
 

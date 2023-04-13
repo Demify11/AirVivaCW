@@ -17,14 +17,13 @@
             <Image url="@air_via_logo.png" />
          </image>
       </ImageView>
-      <Label layoutX="362.0" layoutY="57.0" text="Home Page">
+      <Label layoutX="398.0" layoutY="55.0" text="Home Page">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
       <Label layoutX="717.0" layoutY="21.0" text="Advisor ID :" />
       <Label fx:id="advisorLabel" layoutX="785.0" layoutY="21.0" />
-      <Button layoutX="398.0" layoutY="389.0" mnemonicParsing="false" text="Report" />
       <Button layoutX="33.0" layoutY="579.0" mnemonicParsing="false" onAction="#switchToLoginPage" text="Log Out" />
    </children>
 </AnchorPane>

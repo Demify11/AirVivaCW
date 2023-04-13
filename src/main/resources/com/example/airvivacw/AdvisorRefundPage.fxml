@@ -8,26 +8,32 @@
 
 <AnchorPane prefHeight="635.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.airvivacw.TravelAdvisorRefundController">
    <children>
-      <Label layoutX="49.0" layoutY="40.0" text="Refunds">
+      <Label layoutX="71.0" layoutY="42.0" text="Refunds">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="267.0" layoutY="156.0" text="Blank number :" />
-      <TextField layoutX="350.0" layoutY="152.0" />
-      <Button layoutX="511.0" layoutY="152.0" mnemonicParsing="false" text="Search" />
+      <Label layoutX="239.0" layoutY="160.0" text="Blank number :" />
+      <TextField fx:id="refundTextField" layoutX="350.0" layoutY="152.0" />
+      <Button layoutX="511.0" layoutY="152.0" mnemonicParsing="false" onAction="#SearchOnAction" text="Search" />
       <Label layoutX="347.0" layoutY="84.0" text="Enter Blank details">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="refundPane" layoutX="263.0" layoutY="214.0" prefHeight="238.0" prefWidth="320.0">
+      <AnchorPane fx:id="refundPane" layoutX="263.0" layoutY="214.0" prefHeight="306.0" prefWidth="320.0">
          <children>
-            <Label layoutX="64.0" layoutY="43.0" text="Amount to be refunded :" />
+            <Label layoutX="78.0" layoutY="33.0" text="Amount to be refunded :" />
             <Label fx:id="refundLabel" layoutX="203.0" layoutY="43.0" />
+            <Label layoutX="17.0" layoutY="88.0" text="Customer name : " />
+            <TextField fx:id="nameTextField" layoutX="137.0" layoutY="80.0" />
+            <Button layoutX="107.0" layoutY="153.0" mnemonicParsing="false" onAction="#RefundOnAction" text="Refund" />
+            <Label fx:id="refundMessageLabel" layoutX="147.0" layoutY="218.0" />
          </children>
       </AnchorPane>
       <Label layoutX="694.0" layoutY="32.0" text="Advisor ID :" />
       <Label fx:id="advisorLabel" layoutX="761.0" layoutY="32.0" />
+      <Button layoutX="31.0" layoutY="576.0" mnemonicParsing="false" onAction="#DoneOnAction" text="Done" />
+      <Label fx:id="messageLabel" layoutX="406.0" layoutY="197.0" />
    </children>
 </AnchorPane>

@@ -50,7 +50,6 @@
          </font>
       </Label>
       <Label layoutX="508.0" layoutY="101.0" text="Name :" />
-      <Label fx:id="nameLabel1" layoutX="553.0" layoutY="100.0" prefHeight="18.0" prefWidth="0.0" />
       <VBox fx:id="addDetails" layoutX="402.0" layoutY="395.0" prefHeight="178.0" prefWidth="211.0">
          <children>
             <Label text="Full name(As appears on the card) :" />
@@ -75,7 +74,7 @@
             <Button mnemonicParsing="false" onAction="#CashDoneOnAction" text="Done" />
          </children>
       </VBox>
-      <Button layoutX="771.0" layoutY="586.0" mnemonicParsing="false" text="Done" />
+      <Button layoutX="771.0" layoutY="586.0" mnemonicParsing="false" onAction="#DoneOnAction" text="Done" />
       <Label fx:id="messageLabel" layoutX="284.0" layoutY="568.0" />
       <Button layoutX="667.0" layoutY="360.0" mnemonicParsing="false" onAction="#ConvertOnAction" text="Convert to local currency" />
       <Label layoutX="695.0" layoutY="42.0" text="Advisor ID :" />
@@ -94,6 +93,6 @@
             <Button layoutX="3.0" layoutY="8.0" mnemonicParsing="false" onAction="#CheckTotalOnAction" text="Check total" />
          </children>
       </AnchorPane>
-      <Button layoutX="704.0" layoutY="586.0" mnemonicParsing="false" text="Void" />
+      <Label fx:id="nameLabel1" layoutX="553.0" layoutY="101.0" />
    </children>
 </AnchorPane>
