@@ -53,6 +53,11 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.github.adempiere</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>3.9.4</version>
+        </dependency>
     </dependencies>
 
     <build>
