@@ -22,6 +22,7 @@ public class SceneController {
     private Scene scene;
     private Parent root;
 
+    String userId;
 
     public void setAdvisorUserId(String userId) {
         advisorLabel.setText(userId);
@@ -50,18 +51,33 @@ public class SceneController {
         hello.AdvisorPage(event);
     }
 
+
+
     public void switchToAdvisorStockPage(ActionEvent event) throws IOException, SQLException {
-        root = FXMLLoader.load(getClass().getResource("AdvisorStockPage.fxml"));
+        userId = CurrentUser.getUserId();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdvisorStockPage.fxml"));
+        root = loader.load();
+
+        TravelAdvisorController contr = loader.getController();
+        contr.setAdvisorUserId(userId);
+        //root = FXMLLoader.load(getClass().getResource("AdvisorStockPage.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-
     }
 
     public void switchToAdvisorSalesPage(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("AdvisorSalesPage.fxml"));
+        userId = CurrentUser.getUserId();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdvisorSalesPage.fxml"));
+        root = loader.load();
+
+        TravelAdvisorSaleController contr = loader.getController();
+        contr.setAdvisorLabel(userId);
+
+        //root = FXMLLoader.load(getClass().getResource("AdvisorSalesPage.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -82,9 +98,23 @@ public class SceneController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
 
+    public void switchToAdvisorRefundsPage(ActionEvent event) throws IOException {
+        userId = CurrentUser.getUserId();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdvisorRefundPage.fxml"));
+        root = loader.load();
+
+        TravelAdvisorRefundController contr = loader.getController();
+        contr.getRefundPane().setVisible(false);
+        contr.setAdvisorLabel(userId);
+        //root = FXMLLoader.load(getClass().getResource("AdvisorRefundPage.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     public void switchToLoginPage(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("login1.fxml"));

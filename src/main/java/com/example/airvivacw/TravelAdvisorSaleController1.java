@@ -79,6 +79,9 @@ public class TravelAdvisorSaleController1 {
     @FXML
     private Label nameLabel;
 
+    @FXML
+    private Label advisorLabel;
+
 
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getConnection();
@@ -96,6 +99,7 @@ public class TravelAdvisorSaleController1 {
     String to;
     String total;
     String name;
+    String advisor;
 
     private SceneController sceneController = new SceneController();
 
@@ -104,138 +108,174 @@ public class TravelAdvisorSaleController1 {
 
         ObservableList<Blanks> blanksList4 = FXCollections.observableArrayList();
 
-        Statement statement4 = connectDB.createStatement();
-        ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank");
+        Statement statement5= connectDB.createStatement();
+        ResultSet resultSet5 = statement5.executeQuery("SELECT name FROM `AVuser` WHERE user_id ='"+advisorLabel.getText()+"'");
+        if(resultSet5.next()) {
+            String name = resultSet5.getString("name");
 
-        while (resultSet4.next()) {
-            int id = resultSet4.getInt("id");
-            String number = resultSet4.getString("number");
-            String type = resultSet4.getString("type");
-            int date_received = resultSet4.getInt("date_received");
+            Statement statement4 = connectDB.createStatement();
+            ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM `AVblank` WHERE blankowner = '" + name + "'");
 
-            Blanks blanks = new Blanks(id, number, type, date_received);
-            blanksList4.add(blanks);
+            while (resultSet4.next()) {
+                int id = resultSet4.getInt("id");
+                String number = resultSet4.getString("number");
+                String type = resultSet4.getString("type");
+                int date_received = resultSet4.getInt("date_received");
+
+                Blanks blanks = new Blanks(id, number, type, date_received);
+                blanksList4.add(blanks);
+            }
+            idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
+            numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
+            typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+            BlankTable1.setItems(blanksList4);
         }
-        idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
-        numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
-        typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
-
-        BlankTable1.setItems(blanksList4);
     }
 
     public void InterlineBlank1OnAction(ActionEvent e) throws SQLException {
 
         ObservableList<Blanks> blanksList5 = FXCollections.observableArrayList();
 
-        Statement statement4 = connectDB.createStatement();
-        ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '444';");
+        Statement statement5 = connectDB.createStatement();
+        ResultSet resultSet5 = statement5.executeQuery("SELECT name FROM `AVuser` WHERE user_id ='" + advisorLabel.getText() + "'");
+        if (resultSet5.next()) {
+            String name = resultSet5.getString("name");
 
-        while (resultSet4.next()) {
-            int id = resultSet4.getInt("id");
-            String number = resultSet4.getString("number");
-            String type = resultSet4.getString("type");
-            int date_received = resultSet4.getInt("date_received");
+            Statement statement4 = connectDB.createStatement();
+            ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '444' AND blankowner = '" + name + "';");
 
-            Blanks blanks = new Blanks(id, number, type, date_received);
-            blanksList5.add(blanks);
+            while (resultSet4.next()) {
+                int id = resultSet4.getInt("id");
+                String number = resultSet4.getString("number");
+                String type = resultSet4.getString("type");
+                int date_received = resultSet4.getInt("date_received");
+
+                Blanks blanks = new Blanks(id, number, type, date_received);
+                blanksList5.add(blanks);
+            }
+            idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
+            numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
+            typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+            BlankTable1.setItems(blanksList5);
         }
-        idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
-        numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
-        typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
-
-        BlankTable1.setItems(blanksList5);
     }
 
     public void InterlineBlank2OnAction(ActionEvent e) throws SQLException {
 
         ObservableList<Blanks> blanksList6 = FXCollections.observableArrayList();
 
-        Statement statement4 = connectDB.createStatement();
-        ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '440';");
+        Statement statement5 = connectDB.createStatement();
+        ResultSet resultSet5 = statement5.executeQuery("SELECT name FROM `AVuser` WHERE user_id ='" + advisorLabel.getText() + "'");
+        if (resultSet5.next()) {
+            String name = resultSet5.getString("name");
 
-        while (resultSet4.next()) {
-            int id = resultSet4.getInt("id");
-            String number = resultSet4.getString("number");
-            String type = resultSet4.getString("type");
-            int date_received = resultSet4.getInt("date_received");
+            Statement statement4 = connectDB.createStatement();
+            ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '440' AND blankowner = '" + name + "';");
 
-            Blanks blanks = new Blanks(id, number, type, date_received);
-            blanksList6.add(blanks);
+            while (resultSet4.next()) {
+                int id = resultSet4.getInt("id");
+                String number = resultSet4.getString("number");
+                String type = resultSet4.getString("type");
+                int date_received = resultSet4.getInt("date_received");
+
+                Blanks blanks = new Blanks(id, number, type, date_received);
+                blanksList6.add(blanks);
+            }
+            idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
+            numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
+            typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+            BlankTable1.setItems(blanksList6);
         }
-        idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
-        numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
-        typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
-
-        BlankTable1.setItems(blanksList6);
     }
 
     public void InterlineBlank3OnAction(ActionEvent e) throws SQLException {
 
         ObservableList<Blanks> blanksList7 = FXCollections.observableArrayList();
 
-        Statement statement4 = connectDB.createStatement();
-        ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '420';");
+        Statement statement5 = connectDB.createStatement();
+        ResultSet resultSet5 = statement5.executeQuery("SELECT name FROM `AVuser` WHERE user_id ='" + advisorLabel.getText() + "'");
+        if (resultSet5.next()) {
+            String name = resultSet5.getString("name");
 
-        while (resultSet4.next()) {
-            int id = resultSet4.getInt("id");
-            String number = resultSet4.getString("number");
-            String type = resultSet4.getString("type");
-            int date_received = resultSet4.getInt("date_received");
+            Statement statement4 = connectDB.createStatement();
+            ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '420' AND blankowner = '" + name + "';");
 
-            Blanks blanks = new Blanks(id, number, type, date_received);
-            blanksList7.add(blanks);
+            while (resultSet4.next()) {
+                int id = resultSet4.getInt("id");
+                String number = resultSet4.getString("number");
+                String type = resultSet4.getString("type");
+                int date_received = resultSet4.getInt("date_received");
+
+                Blanks blanks = new Blanks(id, number, type, date_received);
+                blanksList7.add(blanks);
+            }
+            idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
+            numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
+            typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+            BlankTable1.setItems(blanksList7);
         }
-        idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
-        numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
-        typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
-
-        BlankTable1.setItems(blanksList7);
     }
 
     public void DomesticBlank1OnAction(ActionEvent e) throws SQLException {
 
         ObservableList<Blanks> blanksList8 = FXCollections.observableArrayList();
 
-        Statement statement4 = connectDB.createStatement();
-        ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '201';");
+        Statement statement5 = connectDB.createStatement();
+        ResultSet resultSet5 = statement5.executeQuery("SELECT name FROM `AVuser` WHERE user_id ='" + advisorLabel.getText() + "'");
+        if (resultSet5.next()) {
+            String name = resultSet5.getString("name");
 
-        while (resultSet4.next()) {
-            int id = resultSet4.getInt("id");
-            String number = resultSet4.getString("number");
-            String type = resultSet4.getString("type");
-            int date_received = resultSet4.getInt("date_received");
+            Statement statement4 = connectDB.createStatement();
+            ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '201' AND blankowner = '" + name + "';");
 
-            Blanks blanks = new Blanks(id, number, type, date_received);
-            blanksList8.add(blanks);
+            while (resultSet4.next()) {
+                int id = resultSet4.getInt("id");
+                String number = resultSet4.getString("number");
+                String type = resultSet4.getString("type");
+                int date_received = resultSet4.getInt("date_received");
+
+                Blanks blanks = new Blanks(id, number, type, date_received);
+                blanksList8.add(blanks);
+            }
+            idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
+            numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
+            typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+            BlankTable1.setItems(blanksList8);
         }
-        idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
-        numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
-        typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
-
-        BlankTable1.setItems(blanksList8);
     }
 
     public void DomesticBlank2OnAction(ActionEvent e) throws SQLException {
 
         ObservableList<Blanks> blanksList9 = FXCollections.observableArrayList();
 
-        Statement statement4 = connectDB.createStatement();
-        ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '101';");
+        Statement statement5 = connectDB.createStatement();
+        ResultSet resultSet5 = statement5.executeQuery("SELECT name FROM `AVuser` WHERE user_id ='" + advisorLabel.getText() + "'");
+        if (resultSet5.next()) {
+            String name = resultSet5.getString("name");
 
-        while (resultSet4.next()) {
-            int id = resultSet4.getInt("id");
-            String number = resultSet4.getString("number");
-            String type = resultSet4.getString("type");
-            int date_received = resultSet4.getInt("date_received");
+            Statement statement4 = connectDB.createStatement();
+            ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM AVblank WHERE LEFT(number, 3) = '101' AND blankowner = '" + name + "';");
 
-            Blanks blanks = new Blanks(id, number, type, date_received);
-            blanksList9.add(blanks);
+            while (resultSet4.next()) {
+                int id = resultSet4.getInt("id");
+                String number = resultSet4.getString("number");
+                String type = resultSet4.getString("type");
+                int date_received = resultSet4.getInt("date_received");
+
+                Blanks blanks = new Blanks(id, number, type, date_received);
+                blanksList9.add(blanks);
+            }
+            idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
+            numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
+            typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+            BlankTable1.setItems(blanksList9);
         }
-        idCol1.setCellValueFactory(new PropertyValueFactory<>("id"));
-        numCol1.setCellValueFactory(new PropertyValueFactory<>("number"));
-        typeCol1.setCellValueFactory(new PropertyValueFactory<>("type"));
-
-        BlankTable1.setItems(blanksList9);
     }
 
     public void CheckFlightOnAction(ActionEvent e) throws SQLException {
@@ -271,7 +311,7 @@ public class TravelAdvisorSaleController1 {
 
     public void SelectBlankOnAction(ActionEvent e){
         selectedBlank = BlankTable1.getSelectionModel().getSelectedItem();
-        System.out.println(selectedBlank.getNumber());
+        //System.out.println(selectedBlank.getNumber());
         if (selectedBlank != null) {
             numLabel.setText(selectedBlank.getNumber());
             typeLabel.setText(selectedBlank.getType());
@@ -280,7 +320,7 @@ public class TravelAdvisorSaleController1 {
 
     public void SelectFlightOnAction(ActionEvent e){
         selectedFlight = FlightTable.getSelectionModel().getSelectedItem();
-        if (selectedFlight != null) {
+        if (selectedFlight != null){
             toLabel.setText(selectedFlight.getDepart_from());
             arrowLabel.setText("->");
             fromLabel.setText(selectedFlight.getDestination());
@@ -294,6 +334,7 @@ public class TravelAdvisorSaleController1 {
         from = selectedFlight.getDepart_from();
         to = selectedFlight.getDestination();
         name = nameLabel.getText();
+        advisor = CurrentUser.getUserId();
 
         SalePage2(e);
     }
@@ -312,6 +353,7 @@ public class TravelAdvisorSaleController1 {
         scene2.setFlightFrom(from);
         scene2.setFlightTo(to);
         scene2.setNameLabel1(name);
+        scene2.setAdvisorLabel(advisor);
 
         Statement statement = connectDB.createStatement();
         total = "SELECT price FROM AVflight WHERE depart_from = '"+from+"' AND destination = '"+to+"'";
@@ -321,7 +363,6 @@ public class TravelAdvisorSaleController1 {
             double price = resultSet.getDouble("price");
             scene2.setTotalAmount(Double.toString(price));
         }
-
         scene2.getAddDetails().setVisible(false);
         scene2.getCashAmount().setVisible(false);
 
@@ -334,6 +375,8 @@ public class TravelAdvisorSaleController1 {
     public void setCustomer(String name){
         nameLabel.setText(name);
     }
-
+    public void setAdvisorLabel(String userId){
+        advisorLabel.setText(userId);
+    }
 
 }
