@@ -16,8 +16,8 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="75.0" layoutY="228.0" text="Discount :" />
-      <Label layoutX="75.0" layoutY="282.0" text="Commission :" />
+      <Label layoutX="74.0" layoutY="206.0" text="Discount :" />
+      <Label layoutX="74.0" layoutY="252.0" text="Commission :" />
       <Label layoutX="97.0" layoutY="101.0" text="Blank :" />
       <Button layoutX="33.0" layoutY="586.0" mnemonicParsing="false" onAction="#BackOnAction" text="Back" />
       <Label layoutX="97.0" layoutY="132.0" text="Flight from :" />
@@ -27,50 +27,73 @@
       <Label fx:id="fromLabel1" layoutX="175.0" layoutY="132.0" />
       <Label fx:id="typeLabel1" layoutX="382.0" layoutY="101.0" />
       <Label fx:id="toLabel1" layoutX="382.0" layoutY="132.0" />
-      <Label layoutX="75.0" layoutY="336.0" text="Payment Method :" />
-      <MenuButton layoutX="189.0" layoutY="332.0" mnemonicParsing="false" text="Select Method">
+      <Label layoutX="78.0" layoutY="429.0" text="Payment Method :" />
+      <MenuButton layoutX="180.0" layoutY="425.0" mnemonicParsing="false" text="Select Method">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#CashOnAction" text="Cash" />
           <MenuItem mnemonicParsing="false" onAction="#CardOnAction" text="Card" />
+            <MenuItem mnemonicParsing="false" onAction="#PayLaterOnAction" text="PayLater" />
         </items>
       </MenuButton>
-      <Button layoutX="186.0" layoutY="224.0" mnemonicParsing="false" onAction="#ApplyDiscountOnAction" text="Apply Discount" />
-      <MenuButton layoutX="189.0" layoutY="278.0" mnemonicParsing="false" text="Select Rate">
+      <Button layoutX="186.0" layoutY="202.0" mnemonicParsing="false" onAction="#ApplyDiscountOnAction" text="Apply Discount" />
+      <MenuButton layoutX="189.0" layoutY="248.0" mnemonicParsing="false" text="Select Rate">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#InterlineCommissionOnAction" text="Interline rate" />
-          <MenuItem mnemonicParsing="false" onAction="#InterlineCommissionOnAction" text="Domestic rate" />
+          <MenuItem mnemonicParsing="false" onAction="#DomesticCommissionOnAction" text="Domestic rate" />
         </items>
       </MenuButton>
-      <Label fx:id="discountLabel" layoutX="368.0" layoutY="228.0" text="After Discount :" />
-      <Label fx:id="CommLabel" layoutX="368.0" layoutY="282.0" text="After Commission :" />
-      <Label fx:id="totalLabel" layoutX="603.0" layoutY="572.0" text="Total amount :">
+      <Label fx:id="discountLabel" layoutX="368.0" layoutY="206.0" text="After Discount :" />
+      <Label fx:id="CommLabel" layoutX="368.0" layoutY="252.0" text="After Commission :" />
+      <Label fx:id="totalLabel" layoutX="553.0" layoutY="322.0" text="Total amount :">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="97.0" layoutY="175.0" text="Name :" />
-      <Label fx:id="nameLabel1" layoutX="146.0" layoutY="175.0" />
-      <Button layoutX="517.0" layoutY="573.0" mnemonicParsing="false" onAction="#CheckTotalOnAction" text="Check total" />
-      <VBox fx:id="addDetails" layoutX="353.0" layoutY="336.0" prefHeight="178.0" prefWidth="211.0">
+      <Label layoutX="508.0" layoutY="101.0" text="Name :" />
+      <Label fx:id="nameLabel1" layoutX="553.0" layoutY="100.0" prefHeight="18.0" prefWidth="0.0" />
+      <VBox fx:id="addDetails" layoutX="402.0" layoutY="395.0" prefHeight="178.0" prefWidth="211.0">
          <children>
             <Label text="Full name(As appears on the card) :" />
-            <TextField prefHeight="26.0" prefWidth="89.0" />
+            <TextField fx:id="cardNameLabel" prefHeight="26.0" prefWidth="89.0" />
             <Label text="Card number :" />
-            <TextField />
+            <TextField fx:id="cardNumberLabel" />
             <Label text="CVV :" />
-            <TextField />
+            <TextField fx:id="cvvLabel" />
             <Label text="Expiry date :" />
-            <TextField />
+            <TextField fx:id="expDateLabel" />
+            <Button mnemonicParsing="false" onAction="#ProceedOnAction" text="Proceed" />
          </children>
       </VBox>
-      <VBox fx:id="cashAmount" layoutX="135.0" layoutY="387.0" prefHeight="82.0" prefWidth="156.0">
+      <VBox fx:id="cashAmount" layoutX="189.0" layoutY="464.0" prefHeight="82.0" prefWidth="156.0">
          <children>
+            <Label fx:id="cashMessage" text="Amount to be paid : " />
             <Label text="Amount recieved :" />
             <TextField fx:id="amountText" />
             <Button mnemonicParsing="false" onAction="#ShowBalanceOnAction" text="Show balance" />
             <Label text="Balance :" />
             <Label fx:id="balanceLabel" />
+            <Button mnemonicParsing="false" onAction="#CashDoneOnAction" text="Done" />
          </children>
       </VBox>
+      <Button layoutX="771.0" layoutY="586.0" mnemonicParsing="false" text="Done" />
+      <Label fx:id="messageLabel" layoutX="284.0" layoutY="568.0" />
+      <Button layoutX="667.0" layoutY="360.0" mnemonicParsing="false" onAction="#ConvertOnAction" text="Convert to local currency" />
+      <Label layoutX="695.0" layoutY="42.0" text="Advisor ID :" />
+      <Label fx:id="advLabel" layoutX="765.0" layoutY="42.0" />
+      <Label layoutX="158.0" layoutY="298.0" text="Taxes">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="localTextField" layoutX="129.0" layoutY="332.0" />
+      <TextField fx:id="OtherTextField" layoutX="129.0" layoutY="373.0" />
+      <Label layoutX="78.0" layoutY="336.0" text="Local :" />
+      <Label layoutX="79.0" layoutY="377.0" text="Other :" />
+      <AnchorPane fx:id="totalPane" layoutX="463.0" layoutY="314.0" prefHeight="42.0" prefWidth="82.0">
+         <children>
+            <Button layoutX="3.0" layoutY="8.0" mnemonicParsing="false" onAction="#CheckTotalOnAction" text="Check total" />
+         </children>
+      </AnchorPane>
+      <Button layoutX="704.0" layoutY="586.0" mnemonicParsing="false" text="Void" />
    </children>
 </AnchorPane>

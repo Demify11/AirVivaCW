@@ -60,5 +60,7 @@
       <Label fx:id="arrowLabel" layoutX="599.0" layoutY="351.0" />
       <Label layoutX="265.0" layoutY="42.0" text="Name :" />
       <Label fx:id="nameLabel" layoutX="309.0" layoutY="43.0" />
+      <Label layoutX="701.0" layoutY="14.0" text="Advisor ID :" />
+      <Label fx:id="advisorLabel" layoutX="773.0" layoutY="15.0" />
    </children>
 </AnchorPane>

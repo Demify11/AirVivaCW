@@ -37,6 +37,8 @@ public class HelloController {
     public void loginButtonOnAction(ActionEvent e) throws SQLException, IOException {
         userId = usernameTextField.getText();
 
+        CurrentUser.setUserId(userId);
+
         if (usernameTextField.getText().isBlank() == false && passwordTextField.getText().isBlank() == false) {
 
             Statement statement = connectDB.createStatement();
@@ -76,6 +78,7 @@ public class HelloController {
     }
 
     public void AdvisorPage(ActionEvent e) throws IOException {
+        userId = CurrentUser.getUserId();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AdvisorHomePage.fxml"));
         root = loader.load();
 
