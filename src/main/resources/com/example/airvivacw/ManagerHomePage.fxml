@@ -35,7 +35,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="viewblankstable" layoutX="79.0" layoutY="62.0" onMouseClicked="#clickedColumn" prefHeight="330.0" prefWidth="691.0">
+                        <TableView fx:id="viewblankstable" layoutX="79.0" layoutY="62.0" prefHeight="330.0" prefWidth="691.0">
                           <columns>
                             <TableColumn fx:id="ids" prefWidth="64.0" text="ID" />
                             <TableColumn fx:id="numbers" prefWidth="158.0" text="Blank" />
@@ -53,19 +53,27 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="InterLine Report">
+            <Tab text="Sales Report">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
-            <Tab text="Ticket Report">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
-            <Tab text="Domenstic Report">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="salesReport" layoutX="9.0" layoutY="78.0" prefHeight="434.0" prefWidth="831.0">
+                          <columns>
+                            <TableColumn fx:id="id" prefWidth="75.0" text="id" />
+                            <TableColumn fx:id="blankNo" prefWidth="75.0" text="blank number" />
+                              <TableColumn fx:id="customerName" prefWidth="75.0" text="customer" />
+                              <TableColumn fx:id="advisorId" prefWidth="75.0" text="advisor id" />
+                              <TableColumn fx:id="discount" prefWidth="75.0" text="discount" />
+                              <TableColumn fx:id="commission" prefWidth="75.0" text="commission" />
+                              <TableColumn fx:id="amountUsd" prefWidth="75.0" text="usd" />
+                              <TableColumn fx:id="amountLocal" prefWidth="75.0" text="local" />
+                              <TableColumn fx:id="cardHolder" prefWidth="75.0" text="card holder" />
+                              <TableColumn fx:id="expirationDate" prefWidth="75.0" text="expiration" />
+                              <TableColumn fx:id="lastFourDigits" prefWidth="75.0" text="last4digits" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="399.0" layoutY="541.0" mnemonicParsing="false" onAction="#generateTicketReportOnAction" text="Generate" />
+                     </children></AnchorPane>
               </content>
             </Tab>
         </tabs>

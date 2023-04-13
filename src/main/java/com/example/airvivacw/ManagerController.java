@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -15,6 +16,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+
+
 
 public class ManagerController {
 
@@ -29,6 +32,30 @@ public class ManagerController {
     @FXML
     private TextField enterBlankAssignField;
 
+    @FXML
+    TableView<ViewSales> salesReport;
+    @FXML
+    TableColumn<ViewSales,Integer> id;
+    @FXML
+    TableColumn<ViewSales,String> blankNo;
+    @FXML
+    TableColumn<ViewSales,String> customerName;
+    @FXML
+    TableColumn<ViewSales,Integer> advisorId;
+    @FXML
+    TableColumn<ViewSales, Double> discount;
+    @FXML
+    TableColumn<ViewSales,Double> commission;
+    @FXML
+    TableColumn<ViewSales,Double> amountUsd;
+    @FXML
+    TableColumn<ViewSales,Double> amountLocal;
+    @FXML
+    TableColumn<ViewSales,String> cardHolder;
+    @FXML
+    TableColumn<ViewSales,String> expirationDate;
+    @FXML
+    TableColumn<ViewSales,Integer> lastFourDigits;
 
     @FXML
     private TableView<ViewBlanks> viewblankstable;
@@ -117,7 +144,45 @@ public class ManagerController {
 
     }
 
-    public void clickedColumn(ActionEvent e){
+    public void generateTicketReportOnAction(ActionEvent e) throws SQLException {
+
+        ObservableList<ViewSales> listsales2 = FXCollections.observableArrayList();
+
+        Statement statement2 = connectDB.createStatement();
+        ResultSet resultSet2 = statement2.executeQuery("SELECT * FROM AVsale1");
+
+        id.setCellValueFactory(new PropertyValueFactory<ViewSales,Integer>("id"));
+        blankNo.setCellValueFactory(new PropertyValueFactory<ViewSales,String>("blankNo"));
+        customerName.setCellValueFactory(new PropertyValueFactory<ViewSales,String>("customerName"));
+        advisorId.setCellValueFactory(new PropertyValueFactory<ViewSales,Integer>("advisorId"));
+        discount.setCellValueFactory(new PropertyValueFactory<ViewSales,Double>("discount"));
+        commission.setCellValueFactory(new PropertyValueFactory<ViewSales,Double>("commission"));
+        amountUsd.setCellValueFactory(new PropertyValueFactory<ViewSales,Double>("amountUsd"));
+        amountLocal.setCellValueFactory(new PropertyValueFactory<ViewSales,Double>("amountLocal"));
+        cardHolder.setCellValueFactory(new PropertyValueFactory<ViewSales,String>("cardHolder"));
+        expirationDate.setCellValueFactory(new PropertyValueFactory<ViewSales,String>("expirationDate"));
+        lastFourDigits.setCellValueFactory(new PropertyValueFactory<ViewSales,Integer>("LastFourDigits"));
+
+        while (resultSet2.next()) {
+            int id = resultSet2.getInt("id");
+            String blankNo = resultSet2.getString("blank_number");
+            String customerName = resultSet2.getString("customer_name");
+            Integer advisorId = resultSet2.getInt("advisor_id");
+            Double discount = resultSet2.getDouble("discount");
+            Double commission = resultSet2.getDouble("commission");
+            Double amountUsd = resultSet2.getDouble("amount_usd");
+            Double amountLocal = resultSet2.getDouble("amount_local");
+            String cardHolder = resultSet2.getString("cardholder_name");
+            String expirationDate = resultSet2.getString("expiration_date");
+            Integer lastFourDigits = resultSet2.getInt("Last4Digits");
+
+            ViewSales viewsales = new ViewSales(id, blankNo, customerName,  advisorId,  discount,  commission,  amountUsd,  amountLocal,  cardHolder,  expirationDate,  lastFourDigits);
+            listsales2.add(viewsales);
+        }
+
+        salesReport.setItems(listsales2);
+
+
 
     }
 
